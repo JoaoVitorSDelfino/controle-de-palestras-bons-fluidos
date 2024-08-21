@@ -13,8 +13,6 @@ import AddPalestra from "./Routes/Operations/Palestras/addPalestra";
 import EditPalestra from "./Routes/Operations/Palestras/editPalestra";
 import DeletePalestra from "./Routes/Operations/Palestras/deletePalestra";
 
-import './App.css';
-
 function App() {
   return (
     <Router>
