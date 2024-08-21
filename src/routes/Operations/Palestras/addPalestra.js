@@ -5,7 +5,7 @@ function AddPalestra() {
   const [descricao, setDescricao] = useState("");
   const [data, setData] = useState("");
   const [organizadores, setOrganizadores] = useState("");
-  const [palestrantes, setPalestrantes] = useState("");
+  const [local, setLocal] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ function AddPalestra() {
       descricao,
       data,
       organizadores,
-      palestrantes,
+      local,
     };
     console.log("Nova Palestra:", novaPalestra);
     // Limpar os campos após o submit
@@ -23,7 +23,7 @@ function AddPalestra() {
     setDescricao("");
     setData("");
     setOrganizadores("");
-    setPalestrantes("");
+    setLocal("");
   };
 
   return (
@@ -75,12 +75,12 @@ function AddPalestra() {
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="palestrantes">Palestrantes:</label>
+          <label htmlFor="local">Local:</label>
           <input
             type="text"
-            id="palestrantes"
-            value={palestrantes}
-            onChange={(e) => setPalestrantes(e.target.value)}
+            id="local"
+            value={local}
+            onChange={(e) => setLocal(e.target.value)}
             required
             style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
           />
