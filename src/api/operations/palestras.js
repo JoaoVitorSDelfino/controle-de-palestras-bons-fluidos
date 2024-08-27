@@ -39,4 +39,27 @@ router.put('/editPalestra/:id', async (req, res) => {
   }
 })
 
+// Deletar uma palestra pelo id
+router.delete('/deletePalestra/:id', async (req, res) => {
+  try {
+      const palestraExiste = await Palestra.buscarPorId(req.params.id)
+
+      if (!palestraExiste.status) {
+          console.log('nao existe')
+          res.status(400).json({status: false, mensagem: 'ERRO, palestra não existe!'})
+          return
+      }
+      const palestraExcluida = await Palestra.deletar(req.params.id)
+
+        if (palestraExcluida.status) {
+            res.status(200).json({excluir: { palestraExcluida }})
+        } else {
+            res.status(400).json({excluir: palestraExcluida})
+        }
+  } catch (error) {
+      console.error(error)
+      res.status(500).json({error: 'ERRO ao deletar palestra.'})
+  }
+})
+
 module.exports = router

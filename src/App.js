@@ -28,7 +28,7 @@ function App() {
         <Route path="/palestras" element={<PalestrasMenu />} />
         <Route path="/palestras/add" element={<AddPalestra />} />
         <Route path="/palestras/edit" element={<EditPalestra />} />
-        <Route path="/palestras/remove" element={<DeletePalestra />} />
+        <Route path="/palestras/delete" element={<DeletePalestra />} />
       </Routes>
     </Router>
   );

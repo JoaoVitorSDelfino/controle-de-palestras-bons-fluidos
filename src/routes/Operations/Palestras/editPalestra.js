@@ -30,7 +30,7 @@ function EditPalestras() {
         // Redireciona para uma página (por exemplo, lista de palestras)
         navigate("/palestras")
       } catch (error) {
-        console.error("Erro ao adicionar palestra:", error)
+        console.error("Erro ao editar palestra:", error)
       }
   
       // Limpar os campos após o submit
@@ -114,7 +114,7 @@ function EditPalestras() {
             />
           </div>
           <button type="submit" style={{ padding: "10px 15px", backgroundColor: "#28A745", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-            Adicionar Palestra
+            Editar Palestra
           </button>
         </form>
       </div>
