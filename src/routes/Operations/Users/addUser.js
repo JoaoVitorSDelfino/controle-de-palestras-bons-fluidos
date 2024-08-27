@@ -8,12 +8,12 @@ function AddUser() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para salvar o novo usuário
-    const novoUsuario = {
+    const novoUser = {
       login,
       senha,
       funcao,
     };
-    console.log("Novo Usuário:", novoUsuario);
+    console.log("Novo Usuário:", novoUser);
     // Limpar os campos após o submit
     setLogin("");
     setSenha("");

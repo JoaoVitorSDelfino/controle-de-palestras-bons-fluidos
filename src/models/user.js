@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db/connection')
 
-const Usuario = db.define('usuario', {
+const User = db.define('user', {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -20,4 +20,4 @@ const Usuario = db.define('usuario', {
     },
 })
 
-module.exports = Usuario
+module.exports = User
