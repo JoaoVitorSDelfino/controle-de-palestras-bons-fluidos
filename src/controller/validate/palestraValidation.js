@@ -28,20 +28,6 @@ function validarData (data) {
 }
 
 const validatePalestra = (dados) => {
-    let {nome, descricao, data, local} = dados
-        
-    // Validar campos
-    if (!validarCampo(nome)) {
-        return {status: false, mensagem: 'ERRO, nome não pode ser vazio!'}
-    }
-
-    if (validarData(data).status === false) {
-        return {status: false, mensagem: validarData(data).mensagem}
-    }
-
-    if (!validarCampo(local)) {
-        return {status: false, mensagem: 'ERRO, local não pode ser vazio!'}
-    }
 
     return {status: true, mensagem: ''}
 }

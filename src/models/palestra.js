@@ -17,7 +17,7 @@ const Palestra = db.define('palestra', {
         type: Sequelize.STRING,
     },
     data: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     local: {

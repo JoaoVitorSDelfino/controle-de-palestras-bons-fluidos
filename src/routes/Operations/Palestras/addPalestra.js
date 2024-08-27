@@ -22,7 +22,7 @@ function AddPalestra() {
 
     try {
       // Envia os dados para o backend (Express)
-      const response = await axios.post("http://localhost:3001/api/addPalestra", novaPalestra);
+      const response = await axios.post("http://localhost:3001/api/palestras/addPalestra", novaPalestra);
       console.log(response.data);
 
       // Redireciona para uma página (por exemplo, lista de palestras)
