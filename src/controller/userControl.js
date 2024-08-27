@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const {validateUser} = require('./validate/userValidation')
-const validarBuscaLista = require('./controller').validarBuscaLista
+const validarBuscaLista = require('./control').validarBuscaLista
 
 module.exports = {
     criar: async (dados) => {

@@ -1,6 +1,6 @@
 const Palestra = require('../models/palestra')
 const {validatePalestra} = require('./validate/palestraValidation')
-const validarBuscaLista = require('./controller').validarBuscaLista
+const validarBuscaLista = require('./control').validarBuscaLista
 
 module.exports = {
     criar: async (dados) => {
