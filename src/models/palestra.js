@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const db = require('../db/connection')
-const Organizador = require('./organizador')
 
 const Palestra = db.define('palestra', {
     id: {
@@ -26,7 +25,5 @@ const Palestra = db.define('palestra', {
         allowNull: false,
     },
 })
-
-Palestra.hasMany(Organizador, { foreignKey: 'idPalestra' })
 
 module.exports = Palestra
