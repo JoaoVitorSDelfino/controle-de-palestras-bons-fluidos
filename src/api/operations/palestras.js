@@ -16,4 +16,27 @@ router.post('/addPalestra', async (req, res) => {
   }
 })
 
+// Alterar uma palestra pelo id
+router.put('/editPalestra/:id', async (req, res) => {
+  try {
+      const palestraExiste = await Palestra.buscarPorId(req.params.id)
+
+      if (!palestraExiste.status) {
+          res.status(400).json({status: false, mensagem: 'ERRO, palestra não existe!'})
+          return
+      }
+
+      palestraAtualizada = await Palestra.alterar(req.params.id, req.body)
+
+      if (palestraAtualizada.status) {
+          res.status(200).json({atualizar: palestraAtualizada})
+      } else {
+          res.status(400).json({atualizar: palestraAtualizada})
+      }
+  } catch (error) {
+      console.error(error)
+      res.status(500).json({error: 'ERRO ao editar palestra.'})
+  }
+})
+
 module.exports = router
