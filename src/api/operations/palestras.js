@@ -34,7 +34,7 @@ router.put('/editPalestra/:id', async (req, res) => {
       const palestraExiste = await Palestra.buscarPorId(req.params.id)
 
       if (!palestraExiste.status) {
-          res.status(400).json({status: false, mensagem: 'ERRO, palestra não existe!'})
+          res.status(200).json({status: false, mensagem: 'ERRO, palestra não existe!'})
           return
       }
 
@@ -43,7 +43,7 @@ router.put('/editPalestra/:id', async (req, res) => {
       if (palestraAtualizada.status) {
           res.status(200).json({atualizar: palestraAtualizada})
       } else {
-          res.status(400).json({atualizar: palestraAtualizada})
+          res.status(200).json({atualizar: palestraAtualizada})
       }
   } catch (error) {
       console.error(error)
@@ -58,7 +58,7 @@ router.delete('/deletePalestra/:id', async (req, res) => {
 
       if (!palestraExiste.status) {
           console.log('nao existe')
-          res.status(400).json({status: false, mensagem: 'ERRO, palestra não existe!'})
+          res.status(200).json({status: false, mensagem: 'ERRO, palestra não existe!'})
           return
       }
       const palestraExcluida = await Palestra.deletar(req.params.id)
@@ -66,7 +66,7 @@ router.delete('/deletePalestra/:id', async (req, res) => {
         if (palestraExcluida.status) {
             res.status(200).json({excluir: { palestraExcluida }})
         } else {
-            res.status(400).json({excluir: palestraExcluida})
+            res.status(200).json({excluir: palestraExcluida})
         }
   } catch (error) {
       console.error(error)

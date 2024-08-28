@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function DeletePalestra() {
-    const [id, setId] = useState("");
-    const navigate = useNavigate(); // Hook para navegação
+    const [id, setId] = useState("")
+    const navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,11 +14,11 @@ function DeletePalestra() {
           // Envia os dados para o backend (Express)
           const response = await axios.delete(("http://localhost:3001/api/palestras/deletePalestra/" + id))
           
-          if (response.status) {
-            // Redireciona para uma página (por exemplo, lista de palestras)
+          if (response.data.status) {
+            setErrorMessage("")
             navigate("/palestras")
           } else {
-            console.log(response.mensagem)
+            setErrorMessage(response.data.mensagem)
           }
         } catch (error) {
           console.error("Erro ao deletar palestra:", error)
@@ -53,6 +54,7 @@ function DeletePalestra() {
             <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
               Voltar
             </button>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           </form>
         </div>
       );

@@ -8,6 +8,7 @@ function EditUser() {
     const [login, setLogin] = useState("")
     const [senha, setSenha] = useState("")
     const [funcao, setFuncao] = useState("Administrador") // Valor padrão
+    const [errorMessage, setErrorMessage] = useState("")
     const navigate = useNavigate()
   
     const handleSubmit = async (e) => {
@@ -22,10 +23,13 @@ function EditUser() {
       try {
         // Envia os dados para o backend (Express)
         const response = await axios.put(("http://localhost:3001/api/users/editUser/" + id), novoUser)
-        console.log(response.data)
   
-        // Redireciona para uma página (por exemplo, lista de usuário)
-        navigate("/users")
+        if (response.data.status) {
+          setErrorMessage("")
+          navigate("/users")
+        } else {
+          setErrorMessage(response.data.mensagem)
+        }
       } catch (error) {
         console.error("Erro ao editar usuário:", error)
       }
@@ -97,6 +101,7 @@ function EditUser() {
           <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
               Voltar
           </button>
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         </form>
       </div>
     );

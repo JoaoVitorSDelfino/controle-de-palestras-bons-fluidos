@@ -9,6 +9,7 @@ function EditPalestras() {
     const [data, setData] = useState("")
     const [organizadores, setOrganizadores] = useState("")
     const [local, setLocal] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
     const navigate = useNavigate()
   
     const handleSubmit = async (e) => {
@@ -25,10 +26,13 @@ function EditPalestras() {
       try {
         // Envia os dados para o backend (Express)
         const response = await axios.put(("http://localhost:3001/api/palestras/editPalestra/" + id), novaPalestra)
-        console.log(response.data)
-  
-        // Redireciona para uma página (por exemplo, lista de palestras)
-        navigate("/palestras")
+        
+        if (response.data.status) {
+          setErrorMessage("");
+          navigate("/palestras")
+        } else {
+          setErrorMessage(response.data.mensagem);
+        }
       } catch (error) {
         console.error("Erro ao editar palestra:", error)
       }
@@ -123,6 +127,7 @@ function EditPalestras() {
           <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
               Voltar
           </button>
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         </form>
       </div>
     );

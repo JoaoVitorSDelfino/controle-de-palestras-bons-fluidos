@@ -26,7 +26,7 @@ function AddPalestra() {
       console.log(response.data)
 
       // Redireciona para uma página (por exemplo, lista de palestras)
-      navigate("/palestras");
+      navigate("/palestras")
     } catch (error) {
       console.error("Erro ao adicionar palestra:", error)
     }

@@ -4,7 +4,8 @@ import axios from "axios"
 
 function DeleteUser() {
     const [id, setId] = useState("")
-    const navigate = useNavigate() // Hook para navegação
+    const [errorMessage, setErrorMessage] = useState("")
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,11 +14,11 @@ function DeleteUser() {
           // Envia os dados para o backend (Express)
           const response = await axios.delete(("http://localhost:3001/api/users/deleteUser/" + id))
           
-          if (response.status) {
-            // Redireciona para uma página (por exemplo, lista de users)
+          if (response.data.status) {
+            setErrorMessage("")
             navigate("/users")
           } else {
-            console.log(response.mensagem)
+            setErrorMessage(response.data.mensagem)
           }
         } catch (error) {
           console.error("Erro ao deletar usuário:", error)
@@ -37,7 +38,7 @@ function DeleteUser() {
           <form onSubmit={handleSubmit}>
             {/* Campos do formulário */}
             <div style={{ marginBottom: "15px" }}>
-              <label htmlFor="id">Id da usuário:</label>
+              <label htmlFor="id">Id do usuário:</label>
               <input
                 type="text"
                 id="id"
@@ -53,6 +54,7 @@ function DeleteUser() {
             <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
               Voltar
             </button>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           </form>
         </div>
       );

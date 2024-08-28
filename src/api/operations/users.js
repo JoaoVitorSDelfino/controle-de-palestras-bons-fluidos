@@ -38,7 +38,7 @@ router.post('/addUser', async (req, res) => {
         if (usuario.status) {
             res.status(201).json(usuario)
         } else {
-            res.status(400).json(usuario)
+            res.status(200).json(usuario)
         }
     } catch (error) {
         console.error(error)
@@ -56,7 +56,7 @@ router.put('/editUser/:id', async (req, res) => {
         if (usuarioAtualizado.status) {
             res.status(200).json(usuarioAtualizado)
         } else {
-            res.status(400).json(usuarioAtualizado)
+            res.status(200).json(usuarioAtualizado)
         }
         return
     } catch (error) {
@@ -74,7 +74,7 @@ router.delete('/deleteUser/:id', async (req, res) => {
         if (usuarioExcluido.status) {
             res.status(200).json(usuarioExcluido)
         } else {
-            res.status(400).json(usuarioExcluido)
+            res.status(200).json(usuarioExcluido)
         }   
     } catch (error) {
         console.error(error)
