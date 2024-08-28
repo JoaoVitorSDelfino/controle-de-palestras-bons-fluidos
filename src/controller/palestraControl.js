@@ -54,17 +54,4 @@ module.exports = {
     listar: async () => {
         return await Palestra.findAll()
     },
-
-    listarPaginacao: async (limite, pagina) => {
-        limite = parseInt(limite)
-        pagina = (pagina - 1) * 5
-
-        if (validarBuscaLista(limite, pagina).status) {
-            const palestras = await Palestra.findAll({offset: pagina, limit: limite})
-    
-            return {status: true, mensagem: 'Sucesso ao buscar página de palestras!', palestras: palestras}
-        } else {
-            return validarBuscaLista(limite, pagina)
-        }
-    }
 }

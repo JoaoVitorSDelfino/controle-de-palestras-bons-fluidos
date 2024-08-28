@@ -4,7 +4,19 @@ const router = express.Router()
 const Palestra = require('../../controller/palestraControl')
 
 const bodyParser = require('body-parser')
-router.use(bodyParser.json()) // Para processar JSON
+router.use(bodyParser.json())
+
+// Listar lista de palestras cadastradas
+router.get('/showPalestras', async (req, res) => {
+  try {
+      const listaPaginada = await Palestra.listar()
+
+      res.status(200).json(listaPaginada)
+  } catch (error) {
+      console.error(error)
+      res.status(500).json({error: 'ERRO buscar lista de palestras'})
+  }
+})
 
 router.post('/addPalestra', async (req, res) => {
   const novaPalestra = await Palestra.criar(req.body)
