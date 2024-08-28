@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 function EditPalestras() {
-    const [id, setId] = useState("");
-    const [titulo, setTitulo] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [data, setData] = useState("");
-    const [organizadores, setOrganizadores] = useState("");
-    const [local, setLocal] = useState("");
-    const navigate = useNavigate(); // Hook para navegação
+    const [id, setId] = useState("")
+    const [titulo, setTitulo] = useState("")
+    const [descricao, setDescricao] = useState("")
+    const [data, setData] = useState("")
+    const [organizadores, setOrganizadores] = useState("")
+    const [local, setLocal] = useState("")
+    const navigate = useNavigate()
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -40,6 +40,10 @@ function EditPalestras() {
       setData("")
       setOrganizadores("")
       setLocal("")
+    }
+
+    const redirect = () => {
+      navigate('/palestras')
     }
   
     return (
@@ -115,6 +119,9 @@ function EditPalestras() {
           </div>
           <button type="submit" style={{ padding: "10px 15px", backgroundColor: "#28A745", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
             Editar Palestra
+          </button>
+          <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+              Voltar
           </button>
         </form>
       </div>

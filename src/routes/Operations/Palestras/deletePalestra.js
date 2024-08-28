@@ -27,6 +27,10 @@ function DeletePalestra() {
         setId("")
       }
 
+      const redirect = () => {
+        navigate('/palestras')
+      }
+
       return (
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", border: "1px solid #ccc", borderRadius: "5px" }}>
           <h2>Excluir Palestra Existente</h2>
@@ -45,6 +49,9 @@ function DeletePalestra() {
             </div>
             <button type="submit" style={{ padding: "10px 15px", backgroundColor: "#28A745", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
               Deletar Palestra
+            </button>
+            <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+              Voltar
             </button>
           </form>
         </div>

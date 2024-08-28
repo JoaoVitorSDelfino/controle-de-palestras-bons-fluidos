@@ -1,43 +1,47 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 function AddPalestra() {
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [data, setData] = useState("");
-  const [organizadores, setOrganizadores] = useState("");
-  const [local, setLocal] = useState("");
-  const navigate = useNavigate(); // Hook para navegação
+  const [titulo, setTitulo] = useState("")
+  const [descricao, setDescricao] = useState("")
+  const [data, setData] = useState("")
+  const [organizadores, setOrganizadores] = useState("")
+  const [local, setLocal] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const novaPalestra = {
       titulo,
       descricao,
       data,
       organizadores,
       local,
-    };
+    }
 
     try {
       // Envia os dados para o backend (Express)
-      const response = await axios.post("http://localhost:3001/api/palestras/addPalestra", novaPalestra);
-      console.log(response.data);
+      const response = await axios.post("http://localhost:3001/api/palestras/addPalestra", novaPalestra)
+      console.log(response.data)
 
       // Redireciona para uma página (por exemplo, lista de palestras)
       navigate("/palestras");
     } catch (error) {
-      console.error("Erro ao adicionar palestra:", error);
+      console.error("Erro ao adicionar palestra:", error)
     }
 
     // Limpar os campos após o submit
-    setTitulo("");
-    setDescricao("");
-    setData("");
-    setOrganizadores("");
-    setLocal("");
-  };
+    setTitulo("")
+    setDescricao("")
+    setData("")
+    setOrganizadores("")
+    setLocal("")
+  }
+
+  const redirect = () => {
+    navigate('/palestras')
+  }
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", border: "1px solid #ccc", borderRadius: "5px" }}>
@@ -101,6 +105,9 @@ function AddPalestra() {
         </div>
         <button type="submit" style={{ padding: "10px 15px", backgroundColor: "#28A745", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
           Adicionar Palestra
+        </button>
+        <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+            Voltar
         </button>
       </form>
     </div>

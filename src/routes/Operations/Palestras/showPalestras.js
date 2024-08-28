@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
-const PalestrasTable = () => {
+const ShowPalestras = () => {
     const [palestras, setPalestras] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const palestrasPerPage = 10
@@ -80,4 +80,4 @@ const PalestrasTable = () => {
     )
 }
 
-export default PalestrasTable
+export default ShowPalestras
