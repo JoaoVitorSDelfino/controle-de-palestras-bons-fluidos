@@ -11,6 +11,8 @@ function UserMenu() {
         } else if (route === 2) {
             navigate("/users/delete")
         } else if (route === 3) {
+            navigate("/users/show")
+        } else if (route === 4) {
             navigate("/home")
         }
     }
@@ -35,7 +37,12 @@ function UserMenu() {
             </button>
           </li>
           <li style={{ marginBottom: "10px" }}>
-            <button onClick={() => redirect(3)} style={{ padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+            <button onClick={() => redirect(3)} style={{ padding: "10px 15px", backgroundColor: "orange", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+              Mostrar usuários
+            </button>
+          </li>
+          <li style={{ marginBottom: "10px" }}>
+            <button onClick={() => redirect(4)} style={{ padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
               Voltar
             </button>
           </li>

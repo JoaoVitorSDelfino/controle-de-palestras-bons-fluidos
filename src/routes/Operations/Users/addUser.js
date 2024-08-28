@@ -1,24 +1,42 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 function AddUser() {
-  const [login, setLogin] = useState("");
-  const [senha, setSenha] = useState("");
-  const [funcao, setFuncao] = useState("Administrador"); // Valor padrão
+  const [login, setLogin] = useState("")
+  const [senha, setSenha] = useState("")
+  const [funcao, setFuncao] = useState("Administrador") // Valor padrão
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     // Aqui você pode adicionar a lógica para salvar o novo usuário
     const novoUser = {
       login,
       senha,
       funcao,
-    };
-    console.log("Novo Usuário:", novoUser);
+    }
+
+    try {
+      // Envia os dados para o backend (Express)
+      const response = await axios.post("http://localhost:3001/api/users/addUser", novoUser)
+      console.log(response.data)
+
+      // Redireciona para uma página (por exemplo, lista de usuário)
+      navigate("/users")
+    } catch (error) {
+      console.error("Erro ao adicionar usuário:", error)
+    }
+
     // Limpar os campos após o submit
-    setLogin("");
-    setSenha("");
-    setFuncao("Administrador");
-  };
+    setLogin("")
+    setSenha("")
+    setFuncao("Administrador")
+  }
+
+  const redirect = () => {
+    navigate('/palestras')
+  }
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", border: "1px solid #ccc", borderRadius: "5px" }}>
@@ -62,6 +80,9 @@ function AddUser() {
         </div>
         <button type="submit" style={{ padding: "10px 15px", backgroundColor: "#007BFF", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
           Adicionar Usuário
+        </button>
+        <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+            Voltar
         </button>
       </form>
     </div>

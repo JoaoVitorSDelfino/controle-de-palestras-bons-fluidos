@@ -1,20 +1,10 @@
 const User = require('../models/user')
-const {validateUser} = require('./validate/userValidation')
-const validarBuscaLista = require('./control').validarBuscaLista
 
 module.exports = {
     criar: async (dados) => {
-        // Valida os dados recebidos
-        if (validateUser(dados).status) {
-            // Padroniza funcao para ser minúsculo
-            dados.funcao = dados.funcao.toLowerCase()
+        novoUser = await User.create(dados)
 
-            novoUser = await User.create(dados)
-
-            return {status: true, mensagem: 'Sucesso ao criar usuário!', user: novoUser}
-        } else {
-            return validateUser(dados)
-        }
+        return {status: true, mensagem: 'Sucesso ao criar usuário!', user: novoUser}
     },
 
     buscarPorId: async (id) => {
@@ -34,20 +24,16 @@ module.exports = {
             return {status: false, mensagem: 'ERRO, usuário não existe!'}
         }
 
-        if (validateUser(novosDados).status) {
-            await user.update(
-                novosDados, 
-                {where: {id: id}}
-            )
+        await user.update(
+            novosDados, 
+            {where: {id: id}}
+        )
 
-            userAtualizado = await User.findOne({
-                where: {id: id}
-            })    
+        userAtualizado = await User.findOne({
+            where: {id: id}
+        })    
 
-            return {status: true, mensagem: 'Sucesso ao alterar usuário!', userAtualizado: userAtualizado}
-        } else {
-            return validateUser(novosDados)
-        }
+        return {status: true, mensagem: 'Sucesso ao alterar usuário!', userAtualizado: userAtualizado}
     },
 
     deletar: async (id) => {
@@ -71,17 +57,4 @@ module.exports = {
     listar: async () => {
         return await User.findAll()
     },
-
-    listarPaginacao: async (limite, pagina) => {
-        limite = parseInt(limite)
-        pagina = (pagina - 1) * 5
-
-        if (validarBuscaLista(limite, pagina).status) {
-            const users = await User.findAll({offset: pagina, limit: limite})
-    
-            return {status: true, mensagem: 'Sucesso ao buscar página de usuários!', user: users}
-        } else {
-            return validarBuscaLista(limite, pagina)
-        }
-    }
 }

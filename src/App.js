@@ -7,6 +7,7 @@ import UserMenu from "./Routes/userMenu"
 import AddUser from "./Routes/Operations/Users/addUser"
 import EditUser from "./Routes/Operations/Users/editUser"
 import DeleteUser from "./Routes/Operations/Users/deleteUser"
+import ShowUsers from "./Routes/Operations/Users/showUsers"
 
 import PalestrasMenu from "./Routes/palestrasMenu"
 import AddPalestra from "./Routes/Operations/Palestras/addPalestra"
@@ -24,7 +25,8 @@ function App() {
         <Route path="/users" element={<UserMenu />} />
         <Route path="/users/add" element={<AddUser />} />
         <Route path="/users/edit" element={<EditUser />} />
-        <Route path="/users/remove" element={<DeleteUser />} />
+        <Route path="/users/delete" element={<DeleteUser />} />
+        <Route path="/users/show" element={<ShowUsers />} />
 
         <Route path="/palestras" element={<PalestrasMenu />} />
         <Route path="/palestras/add" element={<AddPalestra />} />
