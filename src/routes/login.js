@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // Hook para navegação
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Verifica se o login e a senha são corretos
-    if (username === "admin" && password === "1234") {
-      setErrorMessage("");
-      navigate("/home"); // Redireciona para o menu inicial
-    } else {
-      setErrorMessage("Login ou senha incorretos.");
+  const handleLogin = async (e) => {
+    e.preventDefault()
+
+    try {
+      const response = await axios.get("http://localhost:3001/api/users/viewUser/" + login)
+      console.log(response.data.status)
+
+      // Verifica se o login e a senha são corretos
+      if (response.data.status === true) {
+        setErrorMessage("");
+        navigate("/home"); // Redireciona para o menu inicial
+      } else {
+        setErrorMessage("Login ou senha incorretos.");
+      }
+    } catch (e) {
+      console.log(e)
     }
   };
 
@@ -23,23 +32,23 @@ function Login() {
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="username">Usuário:</label>
+          <label htmlFor="login">Usuário:</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="login"
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
             required
             style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="password">Senha:</label>
+          <label htmlFor="senha">Senha:</label>
           <input
             type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            id="senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
             required
             style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
           />

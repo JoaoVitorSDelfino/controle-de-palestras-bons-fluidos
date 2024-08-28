@@ -6,6 +6,18 @@ const Usuario = require('../../controller/userControl')
 const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 
+// Pesquisar usuário específico pelo id
+router.get('/viewUser/:login', async (req, res) => {
+    try {
+        const usuario = await Usuario.buscarPorLogin(req.params.login)
+
+        res.status(201).json(usuario)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({error: 'ERRO ao buscar usuário'})
+    }
+})
+
 // Rota para obter lista de usuários
 router.get('/showUsers', async (req, res) => {
     try {

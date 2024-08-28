@@ -7,8 +7,8 @@ module.exports = {
         return {status: true, mensagem: 'Sucesso ao criar usuário!', user: novoUser}
     },
 
-    buscarPorId: async (id) => {
-        const user = await User.findOne({where: {id: id}})
+    buscarPorLogin: async (login) => {
+        const user = await User.findOne({where: {login: login}})
 
         if (user) {
             return {status: true, mensagem: 'Sucesso ao buscar usuário!', user: user}
