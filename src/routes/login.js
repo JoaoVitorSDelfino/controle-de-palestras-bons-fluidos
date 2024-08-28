@@ -1,29 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
+import { RoleContext } from "../RoleContext"; // Importa o contexto
 
 function Login() {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // Hook para navegação
+  const { setRole } = useContext(RoleContext); // Usa o contexto
 
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const response = await axios.get("http://localhost:3001/api/users/viewUser/" + login)
-      console.log(response.data.status)
+      const response = await axios.get("http://localhost:3001/api/users/viewUser/" + login);
+      console.log(response.data.status);
 
-      // Verifica se o login e a senha são corretos
       if (response.data.status === true) {
+        setRole(response.data.user.funcao);
         setErrorMessage("");
         navigate("/home"); // Redireciona para o menu inicial
       } else {
         setErrorMessage("Login ou senha incorretos.");
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
 
