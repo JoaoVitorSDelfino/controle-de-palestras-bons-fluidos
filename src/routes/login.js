@@ -15,9 +15,8 @@ function Login() {
 
     try {
       const response = await axios.get("http://localhost:3001/api/users/viewUser/" + login);
-      console.log(response.data.status);
-
-      if (response.data.status === true) {
+      //console.log(response.data.status);
+      if (response.data.user.senha === senha) {
         setRole(response.data.user.funcao);
         setErrorMessage("");
         navigate("/home"); // Redireciona para o menu inicial
