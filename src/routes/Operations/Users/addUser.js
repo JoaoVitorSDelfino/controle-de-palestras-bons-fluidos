@@ -102,7 +102,7 @@ function AddUser() {
     );
   } else {
     return (
-      <div> 
+      <div className="error"> 
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <button onClick={redirect} style={{ margin:"10px", padding: "10px 15px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
           Voltar

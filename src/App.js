@@ -2,23 +2,25 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RoleProvider } from "./RoleContext"; // Importa o provider
 
-import Login from "./Routes/login";
-import MainMenu from "./Routes/mainMenu";
-import UserMenu from "./Routes/userMenu";
-import AddUser from "./Routes/Operations/Users/addUser";
-import EditUser from "./Routes/Operations/Users/editUser";
-import DeleteUser from "./Routes/Operations/Users/deleteUser";
-import ShowUsers from "./Routes/Operations/Users/showUsers";
-import PalestrasMenu from "./Routes/palestrasMenu";
-import AddPalestra from "./Routes/Operations/Palestras/addPalestra";
-import EditPalestra from "./Routes/Operations/Palestras/editPalestra";
-import DeletePalestra from "./Routes/Operations/Palestras/deletePalestra";
-import ShowPalestras from "./Routes/Operations/Palestras/showPalestras";
+import Header from "./utils/components/header";
+import Login from "./routes/login";
+import MainMenu from "./routes/mainMenu";
+import UserMenu from "./routes/userMenu";
+import AddUser from "./routes/Operations/Users/addUser";
+import EditUser from "./routes/Operations/Users/editUser";
+import DeleteUser from "./routes/Operations/Users/deleteUser";
+import ShowUsers from "./routes/Operations/Users/showUsers";
+import PalestrasMenu from "./routes/palestrasMenu";
+import AddPalestra from "./routes/Operations/Palestras/addPalestra";
+import EditPalestra from "./routes/Operations/Palestras/editPalestra";
+import DeletePalestra from "./routes/Operations/Palestras/deletePalestra";
+import ShowPalestras from "./routes/Operations/Palestras/showPalestras";
 
 function App() {
   return (
     <RoleProvider>
       <Router>
+        <Header/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<MainMenu />} />

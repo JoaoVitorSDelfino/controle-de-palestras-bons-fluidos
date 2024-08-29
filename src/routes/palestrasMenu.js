@@ -18,7 +18,7 @@ function PalestrasMenu() {
     }
 
     return (
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div className="background" style={{ textAlign: "center", marginTop: "50px" }}>
         <h2>Controle de Palestras</h2>
         <ul style={{ listStyleType: "none", padding: 0 }}>
           <li style={{ marginBottom: "10px" }}>
